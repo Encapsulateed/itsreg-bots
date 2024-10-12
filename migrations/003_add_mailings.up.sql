@@ -1,5 +1,4 @@
 CREATE TABLE mailings (
-    mailing_id     SERIAL      PRIMARY KEY
     bot_uuid       VARCHAR(36)  NOT NULL,
     name           VARCHAR(128) NOT NULL,
     entry_key      VARCHAR(256) NOT NULL,

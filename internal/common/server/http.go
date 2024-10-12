@@ -1,6 +1,9 @@
 package server
 
 import (
+	"github.com/bmstu-itstech/itsreg-bots/internal/common/jwtauth"
+	"github.com/bmstu-itstech/itsreg-bots/internal/common/logs/sl"
+	"log/slog"
 	"net/http"
 	"os"
 	"strings"
@@ -9,7 +12,6 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 
-	"github.com/bmstu-itstech/itsreg-bots/internal/common/jwtauth"
 	"github.com/bmstu-itstech/itsreg-bots/internal/common/logs"
 )
 
@@ -18,29 +20,28 @@ func RunHTTPServer(createHandler func(router chi.Router) http.Handler) {
 }
 
 func RunHTTPServerOnAddr(addr string, createHandler func(router chi.Router) http.Handler) {
+	log := logs.DefaultLogger()
+
 	apiRouter := chi.NewRouter()
-	setMiddlewares(apiRouter)
+	setMiddlewares(apiRouter, log)
 
 	rootRouter := chi.NewRouter()
-	// we are mounting all APIs under /api path
 	rootRouter.Mount("/api", createHandler(apiRouter))
 
-	logger := logs.DefaultLogger()
-	logger.Info("Starting: HTTP server", "addr", addr)
+	log.Info("Starting: HTTP server", "addr", addr)
 
 	err := http.ListenAndServe(addr, rootRouter)
 	if err != nil {
-		logger.Error("Unable to start HTTP server")
+		log.Error("Unable to start HTTP server")
 		panic(err)
 	}
 }
 
-func setMiddlewares(router *chi.Mux) {
+func setMiddlewares(router *chi.Mux, log *slog.Logger) {
 	router.Use(middleware.RequestID)
 	router.Use(middleware.RealIP)
-	//router.Use(logs.NewStructuredLogger(logrus.StandardLogger()))
+	router.Use(sl.NewLoggerMiddleware(log))
 	router.Use(middleware.Recoverer)
-	router.Use(jwtauth.HTTPMiddleware)
 
 	addCorsMiddleware(router)
 
@@ -49,6 +50,7 @@ func setMiddlewares(router *chi.Mux) {
 		middleware.SetHeader("X-Frame-Options", "deny"),
 	)
 	router.Use(middleware.NoCache)
+	router.Use(jwtauth.HTTPMiddleware)
 }
 
 func addCorsMiddleware(router *chi.Mux) {

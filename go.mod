@@ -5,6 +5,7 @@ go 1.22.5
 require (
 	github.com/ThreeDotsLabs/watermill v1.3.7
 	github.com/ThreeDotsLabs/watermill-amqp/v2 v2.1.3
+	github.com/ThreeDotsLabs/watermill-nats/v2 v2.1.1
 	github.com/brianvoe/gofakeit/v6 v6.28.0
 	github.com/fatih/color v1.17.0
 	github.com/go-chi/chi/v5 v5.1.0
@@ -21,11 +22,13 @@ require (
 )
 
 require (
-	github.com/ThreeDotsLabs/watermill-nats/v2 v2.1.1 // indirect
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/go-andiamo/chioas v1.16.3 // indirect
+	github.com/go-andiamo/splitter v1.2.5 // indirect
+	github.com/go-andiamo/urit v1.2.1 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
@@ -43,11 +46,11 @@ require (
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	golang.org/x/crypto v0.26.0 // indirect
+	golang.org/x/exp v0.0.0-20230626212559-97b1e661b5df // indirect
 	golang.org/x/net v0.28.0 // indirect
 	golang.org/x/sys v0.24.0 // indirect
 	golang.org/x/text v0.17.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240725223205-93522f1f2a9f // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
-	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

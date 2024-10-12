@@ -10,7 +10,7 @@ import (
 	"github.com/ThreeDotsLabs/watermill"
 	"github.com/ThreeDotsLabs/watermill-nats/v2/pkg/nats"
 	"github.com/ThreeDotsLabs/watermill/message"
-	 nc "github.com/nats-io/nats.go"
+	nc "github.com/nats-io/nats.go"
 
 	"github.com/bmstu-itstech/itsreg-bots/internal/common/logs"
 	"github.com/bmstu-itstech/itsreg-bots/internal/common/logs/sl"
