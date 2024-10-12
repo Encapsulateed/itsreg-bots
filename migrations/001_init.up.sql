@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS entry_points (
 );
 
 CREATE TABLE IF NOT EXISTS options (
+    option_id SERIAL     PRIMARY KEY
     bot_uuid VARCHAR(36)  NOT NULL,
     state    INTEGER      NOT NULL,
     next     INTEGER      NOT NULL,
